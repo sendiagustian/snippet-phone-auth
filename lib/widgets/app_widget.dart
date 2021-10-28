@@ -34,27 +34,6 @@ class AppWidget {
     );
   }
 
-  // Widget loading sebelum menampilkan data
-  static Widget loadingData({
-    required String loadingTitle,
-  }) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          const SizedBox(
-            height: 35,
-            width: 35,
-            child: CircularProgressIndicator(),
-          ),
-          const SizedBox(height: 16),
-          Text(loadingTitle)
-        ],
-      ),
-    );
-  }
-
   // Untuk manampilkan snackbar
   static showSnackBar({
     required BuildContext context,

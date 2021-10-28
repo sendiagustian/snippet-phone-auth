@@ -4,7 +4,6 @@ import 'package:snippetphoneauth/models/user_model.dart';
 import 'package:snippetphoneauth/screens/auth/login.dart';
 import 'package:snippetphoneauth/screens/auth/providers/auth_provider.dart';
 import 'package:snippetphoneauth/screens/home.dart';
-import 'package:snippetphoneauth/widgets/app_widget.dart';
 
 // Auth status pengecekan
 class AuthChecker extends StatelessWidget {
@@ -12,13 +11,6 @@ class AuthChecker extends StatelessWidget {
   static const featureName = 'Auth Checker';
 
   const AuthChecker({Key? key}) : super(key: key);
-
-  // Pembuatan widget untuk waiting screen
-  Widget buildWaitingScreen() {
-    return Scaffold(
-      body: AppWidget.loadingData(loadingTitle: 'Mohon tunggu...'),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
