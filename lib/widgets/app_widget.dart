@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppWidget {
-  static loadingPageIndicator({
+  static void loadingPageIndicator({
     required BuildContext context,
   }) {
     showGeneralDialog(
@@ -35,7 +35,7 @@ class AppWidget {
   }
 
   // Untuk manampilkan snackbar
-  static showSnackBar({
+  static ScaffoldFeatureController showSnackBar({
     required BuildContext context,
     required Widget content,
     required Duration duration,

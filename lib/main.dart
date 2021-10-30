@@ -15,12 +15,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(
-          value: AuthProvider(),
-        ),
-      ],
+    return ChangeNotifierProvider.value(
+      value: AuthProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Snippet Phone Auth',

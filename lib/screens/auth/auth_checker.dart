@@ -7,9 +7,6 @@ import 'package:snippetphoneauth/screens/home.dart';
 
 // Auth status pengecekan
 class AuthChecker extends StatelessWidget {
-  static const String routeName = '/auth-checker';
-  static const featureName = 'Auth Checker';
-
   const AuthChecker({Key? key}) : super(key: key);
 
   @override

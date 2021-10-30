@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:country_list_pick/country_list_pick.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:snippetphoneauth/databases/snippet_auth_database.dart';
 import 'package:snippetphoneauth/models/user_model.dart';
 import 'package:snippetphoneauth/screens/auth/auth_checker.dart';
 import 'package:snippetphoneauth/screens/auth/verification.dart';
@@ -10,11 +10,6 @@ import 'package:snippetphoneauth/widgets/app_widget.dart';
 
 // Provider untuk halaman auth
 class AuthProvider with ChangeNotifier {
-  final String? docId;
-
-  // Pengisian docId contoh => AuthService(docId: 'value')
-  AuthProvider({this.docId});
-
   // Pendekralasian/inisiasi object auth firebase
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -66,7 +61,7 @@ class AuthProvider with ChangeNotifier {
     if (auth.currentUser != null) {
       // Nilai dikembalikan untuk mengupdate data model user data
       return firestore
-          .collection('snippet-auth')
+          .collection('snippet-phone-auth')
           .doc(auth.currentUser!.uid)
           .snapshots()
           .map((userModel) {
@@ -204,6 +199,26 @@ class AuthProvider with ChangeNotifier {
     }
     // Lakukan pengecekan untuk melanjutkan ke home jika user auth sudah terisi
     if (currentUser != null) {
+      await PhoneAuthDatabase()
+          .getUserData(currentUser.uid)
+          .then((userDataDoc) async {
+        final UserModel userModel = UserModel(
+          docUID: currentUser!.uid,
+          phone: phone,
+          status: 'active',
+          logedInDate: DateTime.now(),
+        );
+        if (userDataDoc.exists) {
+          await PhoneAuthDatabase().updateDataUser(
+            currentUser.uid,
+            data: {
+              'logedInDate': DateTime.now(),
+            },
+          );
+        } else {
+          await PhoneAuthDatabase().createUser(userModel);
+        }
+      });
       // Jika auth login telah terisi maka alihkan kembali ke halaman auth checker
       Navigator.pushReplacement(
         context,

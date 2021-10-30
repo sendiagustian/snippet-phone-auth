@@ -134,21 +134,6 @@ class LoginScreen extends StatelessWidget {
                                 onChanged: (String text) {
                                   authProvider.notifyState();
                                 },
-                                onEditingComplete: () {
-                                  if (authProvider.phoneNumberController.text
-                                          .trim()[0] ==
-                                      '0') {
-                                    _onSubmit(
-                                      context,
-                                      '${authProvider.countryCode.dialCode!}${authProvider.phoneNumberController.text.trim().substring(1, authProvider.phoneNumberController.text.trim().length).trim()}',
-                                    );
-                                  } else {
-                                    _onSubmit(
-                                      context,
-                                      '${authProvider.countryCode.dialCode!}${authProvider.phoneNumberController.text.trim()}',
-                                    );
-                                  }
-                                },
                                 keyboardType: TextInputType.phone,
                                 controller: authProvider.phoneNumberController,
                                 decoration: InputDecoration(

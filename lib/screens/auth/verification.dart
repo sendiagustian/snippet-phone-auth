@@ -85,13 +85,6 @@ class VerificationScreen extends StatelessWidget {
                             onChanged: (String text) {
                               authProvider.notifyState();
                             },
-                            onEditingComplete: () {
-                              _onSubmit(
-                                context,
-                                beUserPhone,
-                                authProvider.otpCodeController.text.trim(),
-                              );
-                            },
                             keyboardType: TextInputType.number,
                             controller: authProvider.otpCodeController,
                             decoration: InputDecoration(

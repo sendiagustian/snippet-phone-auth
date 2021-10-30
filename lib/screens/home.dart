@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:snippetphoneauth/models/user_model.dart';
 import 'package:snippetphoneauth/screens/auth/providers/auth_provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,6 +8,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final UserModel userModel = Provider.of<UserModel>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Snippet Phone Auth'),
@@ -25,8 +27,16 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Home Screen'),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(userModel.docUID),
+          Text(userModel.phone),
+          Text(userModel.status),
+          Text(userModel.logedInDate.toString()),
+          const Text('Home Screen'),
+        ],
       ),
     );
   }
